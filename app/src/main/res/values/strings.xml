@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Bootcamp DI</string>
+    <string name="failure_empty_uuid">Identificador do usuário não informado</string>
+    <string name="failure_user_not_found">Usuário não encontrado na API</string>
+    <string name="loading">Loading...</string>
+
+
 </resources>

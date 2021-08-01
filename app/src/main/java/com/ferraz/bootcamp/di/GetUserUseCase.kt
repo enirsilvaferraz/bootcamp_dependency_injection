@@ -1,0 +1,21 @@
+package com.ferraz.bootcamp.di
+
+class GetUserUseCase(val repLocal: UserRepository, val repRemote: UserRepository) {
+
+    /**
+     *
+     * Busca o dado no banco
+     * - Se encontrar, retorna o dado
+     * - Se não encontrar, busca na api
+     *
+     * Ao buscar o dado na api
+     * - Se encontrar, salva no banco e retorna o dado
+     * - Se não encontrar, retorna nulo
+     *
+     */
+    suspend fun getUserData(uuid: String): User? {
+        return repLocal.getById(uuid) ?: repRemote.getById(uuid).also { user ->
+            repLocal.save(user)
+        }
+    }
+}
