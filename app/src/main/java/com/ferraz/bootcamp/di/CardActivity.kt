@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.ferraz.bootcamp.di.Helpers.getArrayAdapter
 import com.ferraz.bootcamp.di.databinding.ActivityCardBinding
-import org.koin.android.ext.android.inject
 
 class CardActivity : AppCompatActivity(R.layout.activity_card) {
 
-    private val viewModel: CardViewModel by inject()
+    private lateinit var viewModel: CardViewModel
 
     private val binding by lazy {
         ActivityCardBinding.inflate(layoutInflater)
@@ -21,19 +20,23 @@ class CardActivity : AppCompatActivity(R.layout.activity_card) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        viewModel = CardViewModel(this)
+
         observeLiveData()
         configureViews()
     }
 
     private fun observeLiveData() {
 
-        viewModel.userLiveData.observe(this) {
+        viewModel.userLiveData.observe(this) { userState ->
 
-            when (it) {
+            when (userState) {
 
                 is UserState.Loading -> {
+
                     binding.cardContainer.visibility = View.INVISIBLE
                     binding.progressBar.visibility = View.VISIBLE
+
                 }
 
                 is UserState.Failure -> {
@@ -41,16 +44,16 @@ class CardActivity : AppCompatActivity(R.layout.activity_card) {
                     binding.cardContainer.visibility = View.INVISIBLE
                     binding.progressBar.visibility = View.INVISIBLE
 
-                    Toast.makeText(this, getString(it.message), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(userState.message), Toast.LENGTH_SHORT).show()
                 }
 
                 is UserState.Success -> {
 
-                    binding.usernameValue.text = it.user?.nome
-                    binding.userCityValue.text = it.user?.cidade
-                    binding.userPhoneValue.text = it.user?.celular
+                    binding.userNameValue.text = userState.user?.nome
+                    binding.userCityValue.text = userState.user?.cidade
+                    binding.userPhoneValue.text = userState.user?.celular
 
-                    Glide.with(this).load(BuildConfig.BASE_URL + it.user?.avatar)
+                    Glide.with(this).load(BuildConfig.BASE_URL + userState.user?.avatar)
                         .placeholder(R.drawable.placeholder).centerCrop()
                         .into(binding.appCompatImageView)
 

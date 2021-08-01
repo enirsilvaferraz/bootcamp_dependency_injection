@@ -30,8 +30,7 @@
             android:layout_height="match_parent"
             android:padding="16dp"
             android:progress="50"
-            android:visibility="gone"
-            tools:visibility="visible" />
+            android:visibility="gone" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardContainer"
@@ -68,7 +67,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/usernameValue"
+                    android:id="@+id/user_name_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -85,8 +84,8 @@
                     android:text="Cidade: "
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/usernameValue"
-                    app:layout_constraintTop_toBottomOf="@+id/usernameValue" />
+                    app:layout_constraintStart_toStartOf="@+id/user_name_value"
+                    app:layout_constraintTop_toBottomOf="@+id/user_name_value" />
 
                 <TextView
                     android:id="@+id/userCityValue"
@@ -104,7 +103,7 @@
                     android:text="Telefone: "
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/usernameValue"
+                    app:layout_constraintStart_toStartOf="@+id/user_name_value"
                     app:layout_constraintTop_toBottomOf="@+id/userCityValue" />
 
                 <TextView

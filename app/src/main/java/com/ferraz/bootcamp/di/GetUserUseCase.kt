@@ -1,6 +1,11 @@
 package com.ferraz.bootcamp.di
 
-class GetUserUseCase(val repLocal: UserRepository, val repRemote: UserRepository) {
+import android.content.Context
+
+class GetUserUseCase(context: Context) {
+
+    val repLocal = UserRepositoryLocal(context)
+    val repRemote = UserRepositoryRemote()
 
     /**
      *
@@ -13,7 +18,8 @@ class GetUserUseCase(val repLocal: UserRepository, val repRemote: UserRepository
      * - Se não encontrar, retorna nulo
      *
      */
-    suspend fun getUserData(uuid: String): User? {
+    suspend fun getUserData(uuid: String): User {
+
         return repLocal.getById(uuid) ?: repRemote.getById(uuid).also { user ->
             repLocal.save(user)
         }

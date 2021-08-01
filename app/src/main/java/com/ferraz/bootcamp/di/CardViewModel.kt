@@ -1,12 +1,13 @@
 package com.ferraz.bootcamp.di
 
+import android.content.Context
 import androidx.annotation.StringRes
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class CardViewModel(private val getUserUseCase: GetUserUseCase) : ViewModel() {
+class CardViewModel(private val context: Context) : ViewModel() {
 
     val userLiveData = MutableLiveData<UserState>()
 
@@ -18,13 +19,13 @@ class CardViewModel(private val getUserUseCase: GetUserUseCase) : ViewModel() {
 
             userLiveData.value = UserState.Failure(R.string.failure_empty_uuid)
 
-        } else {
+        } else try {
 
-            userLiveData.value = try {
-                UserState.Success(getUserUseCase.getUserData(uuid))
-            } catch (e: Exception) {
-                UserState.Failure(R.string.failure_user_not_found)
-            }
+            val user = GetUserUseCase(context).getUserData(uuid)
+            userLiveData.value = UserState.Success(user)
+
+        } catch (e: Exception) {
+            userLiveData.value = UserState.Failure(R.string.failure_user_not_found)
         }
     }
 }

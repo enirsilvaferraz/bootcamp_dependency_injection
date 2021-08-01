@@ -18,7 +18,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField("String", "BASE_URL", "\"https://raw.githubusercontent.com/enirsilvaferraz/bootcamp_dependency_injection/feature/api/\"")
+        buildConfigField("String", "BASE_URL", "\"https://raw.githubusercontent.com/enirsilvaferraz/bootcamp_dependency_injection/master/\"")
     }
 
     buildTypes {
@@ -54,6 +54,10 @@ dependencies {
 
     // Mockk
     testImplementation "io.mockk:mockk:1.12.0"
+
+    // Robolectric
+    testImplementation 'org.robolectric:robolectric:4.4'
+    testImplementation 'androidx.test:core:1.4.0'
 
     // ROOM
     def room_version = "2.3.0"
