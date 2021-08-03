@@ -18,7 +18,7 @@ class GetUserUseCase(context: Context) {
      * - Se não encontrar, retorna nulo
      *
      */
-    suspend fun getUserData(uuid: String): User {
+    suspend fun getUserData(uuid: String): User? {
 
         return repLocal.getById(uuid) ?: repRemote.getById(uuid).also { user ->
             repLocal.save(user)
