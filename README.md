@@ -4,11 +4,11 @@ Implementar a injeção de dependências em um projeto android funcional.
 
 Ao final da apresentação, você será capaz de entender a importância e como aplicar em seus projetos.
 
-<BR>
+
 
 ## Desafio: Configurar a injeção de dependências automática
 
-<BR>
+
 
 ### Parte 1: Aplicar a injeção de dependências manual
 
@@ -22,7 +22,7 @@ Ao final da apresentação, você será capaz de entender a importância e como 
 OBS.: As interfaces UserWebService e **UserDao** não precisam de alteração. Elas não possuem classes, dentro do nosso projeto, que implementem seu comportamento, são geradas pelo gradle (através do **Retrofit** e do **ROOM**) ao realizar o build. 
 
 
-<BR>
+
 
 2. Coloque todas as intâncias na classe **CardActivity**, por enquanto.
 
@@ -40,15 +40,15 @@ val getUserUseCase = GetUserUseCase(repLocal = repLocal, repRemote = repRemote)
 viewModel = CardViewModel(getUserUseCase = getUserUseCase)
 ```
 
-<BR>
+
 
 3. Rode o app para garantir que tudo ainda está funcionando.
 
-<BR>
+
 
 ## Parte 2: Aplicar a injeção de dependências automática
 
-<BR>
+
 
 1. Adicionar o Koin ao projeto (Já adicionei ao projeto para agilizar).
 
@@ -57,7 +57,7 @@ viewModel = CardViewModel(getUserUseCase = getUserUseCase)
 implementation "io.insert-koin:koin-android:3.1.2"
 ```
 
-<BR>
+
 
 2. Criar um arquivo chamado DI e mapeie, dentro dele, as instâncias das classes do projeto, conforme abaixo.
 
@@ -87,7 +87,7 @@ val koinModule = module {
 }
 ```
 
-<BR>
+
 
 3. Inicie o Koin na activity, por enquanto.
 
@@ -107,15 +107,15 @@ override fun onCreate(savedInstanceState: Bundle?) {
 }
 ```
 
-<BR>
+
 
 4. Rode o app para garantir que tudo ainda está funcionando.
 
-<BR>
+
 
 ## Parte 3: Refatorar a injeção de dependências automática
 
-<BR>
+
 
 1. Criar uma classe **AppApplication** que herde de **Application** e migre o start do Koin para ela. (Não se esquça de mapear a AppApplication no AndroidManigest)
 
@@ -129,7 +129,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 5. Configurar a instância de **CardViewModel** com o método **viewModel** do Koin.
 
-<BR>
+
 
 OBS.: O código final da classe DI deve parecer com esse:
 
