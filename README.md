@@ -50,7 +50,7 @@ viewModel = CardViewModel(getUserUseCase = getUserUseCase)
 
 
 
-1. Adicionar o Koin ao projeto (Já adicionei ao projeto para agilizar).
+1. Adicione o Koin ao projeto (Já adicionei ao projeto para agilizar).
 
 ```groovy
 // Koin for Kotlin apps
@@ -59,7 +59,7 @@ implementation "io.insert-koin:koin-android:3.1.2"
 
 
 
-2. Criar um arquivo chamado DI e mapeie, dentro dele, as instâncias das classes do projeto, conforme abaixo.
+2. Crie um arquivo chamado DI e mapeie, dentro dele, as instâncias das classes do projeto, conforme abaixo.
 
 
 ```kotlin
@@ -117,17 +117,17 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
 
 
-1. Criar uma classe **AppApplication** que herde de **Application** e migre o start do Koin para ela. (Não se esquça de mapear a AppApplication no AndroidManigest)
+1. Crie uma classe **AppApplication** que herde de **Application** e migre o start do Koin para ela. (Não se esquça de mapear a AppApplication no AndroidManifest)
 
-2. Remover classes inferidas pelo kotlin no arquivo de DI.
+2. Remova classes inferidas pelo kotlin no arquivo de DI.
 
-3. Testar as funções **inject** e **get** na classe **CardActivity**.
+3. Teste as funções **inject** e **get** na classe **CardActivity**.
 * Inject para atributos de classe.
 * get para variáveis dentro dos métodos.
 
-4. Configurar as intâncias de **ROOM** e **Retrofit** para se tornarem **singletons** (use o método **single** do Koin).
+4. Configure as intâncias de **ROOM** e **Retrofit** para se tornarem **singletons** (use o método **single** do Koin).
 
-5. Configurar a instância de **CardViewModel** com o método **viewModel** do Koin.
+5. Configure a instância de **CardViewModel** com o método **viewModel** do Koin.
 
 
 
