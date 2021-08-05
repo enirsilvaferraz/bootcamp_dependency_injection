@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 
-class CardViewModel(private val context: Context) : ViewModel() {
+class CardViewModel(private val getUserUseCase: GetUserUseCase) : ViewModel() {
 
     val userLiveData = MutableLiveData<UserState>()
 
@@ -21,7 +21,7 @@ class CardViewModel(private val context: Context) : ViewModel() {
 
         } else try {
 
-            val user = GetUserUseCase(context).getUserData(uuid)
+            val user = getUserUseCase.getUserData(uuid)
             userLiveData.value = UserState.Success(user)
 
         } catch (e: Exception) {

@@ -7,10 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.ferraz.bootcamp.di.Helpers.getArrayAdapter
 import com.ferraz.bootcamp.di.databinding.ActivityCardBinding
+import org.koin.android.ext.android.inject
 
 class CardActivity : AppCompatActivity(R.layout.activity_card) {
 
-    private lateinit var viewModel: CardViewModel
+    private val viewModel: CardViewModel by inject()
 
     private val binding by lazy {
         ActivityCardBinding.inflate(layoutInflater)
@@ -19,8 +20,6 @@ class CardActivity : AppCompatActivity(R.layout.activity_card) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        viewModel = CardViewModel(this)
 
         observeLiveData()
         configureViews()

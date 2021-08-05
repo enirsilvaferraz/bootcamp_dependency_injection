@@ -1,11 +1,9 @@
 package com.ferraz.bootcamp.di
 
-import android.content.Context
-
-class GetUserUseCase(context: Context) {
-
-    val repLocal = UserRepositoryLocal(context)
-    val repRemote = UserRepositoryRemote()
+class GetUserUseCase(
+    val repLocal: UserRepository,
+    val repRemote: UserRepository
+) {
 
     /**
      *
